@@ -27,9 +27,10 @@
 
   Ative o ambiente virtual criado no passo anterior:
     
-    // windows 
+    # windows 
     ./venv/Scripts/activate
-    // linux
+    
+    # linux
     source venv/bin/activate
     
   4. Instalar Dependências
