@@ -9,41 +9,40 @@
 ## Como rodar
   1. Clonar o Repositório
 
-    Clone o repositório para sua máquina local utilizando o comando:
-    ```bash
-      git clone https://github.com/PedroLLOliveira/RandomForest.git
-    ```
+  Clone o repositório para sua máquina local utilizando o comando:
+    
+    git clone https://github.com/PedroLLOliveira/RandomForest.git
+    
   2. Criar Ambiente Virtual Python
 
-    Crie um ambiente virtual para isolar as dependências do projeto:
-    ```bash
-      python -m venv venv
-    ```
-    ou
-    ``` bash
-      python3 -m venv venv
-    ```
+  Crie um ambiente virtual para isolar as dependências do projeto:
+    
+    python -m venv venv
+    
+  ou
+    
+    python3 -m venv venv
+    
   3. Ativar o Ambiente Virtual
 
-    Ative o ambiente virtual criado no passo anterior:
-    ```bash
-      // windows 
-      ./venv/Scripts/activate
-      // linux
-      source venv/bin/activate
-    ```
+  Ative o ambiente virtual criado no passo anterior:
+    
+    // windows 
+    ./venv/Scripts/activate
+    // linux
+    source venv/bin/activate
+    
   4. Instalar Dependências
 
-    Instale todas as dependências necessárias listadas no arquivo requirements.txt:
-    ```bash
-      pip install -r requirements.txt
-    ```
+  Instale todas as dependências necessárias listadas no arquivo requirements.txt:
+    
+    pip install -r requirements.txt
+    
   5. Rodar a Aplicação
 
-    Execute a aplicação principal:
-    ```bash
-      python solver.py
-    ```
+  Execute a aplicação principal:
+    
+    python solver.py
   
 ## Explicação do Código
 
