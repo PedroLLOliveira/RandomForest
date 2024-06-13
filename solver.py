@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.tree import plot_tree
+
 
 # Carregar o CSV com as distâncias em forma de plano carteziano 
 df_distances = pd.read_csv('./locais_data_base.csv', index_col=0, sep=';')
@@ -31,7 +33,6 @@ def calculate_metrics(route, df_distances):
          'std_distance': 2.5, 'initial_distance': 10, 'final_distance': 15}
     """
     distances = []
-    
     for i in range(len(route) - 1):
         start = route[i]
         end = route[i + 1]
@@ -62,7 +63,7 @@ def calculate_metrics(route, df_distances):
 # Gerar dados aleatórios para treinamento
 locations = df_distances.index.tolist()
 routes = []
-for _ in range(1000):  # Quantidade de dados aleatórios
+for _ in range(5000):  # Aumentar a quantidade de dados aleatórios
     random_route = random.sample(locations, k=random.randint(2, len(locations)))
     metrics = calculate_metrics(random_route, df_distances)
     routes.append(metrics)
@@ -81,7 +82,19 @@ y = df_train['total_distance']
 rf = RandomForestRegressor(n_estimators=100, random_state=42)
 rf.fit(X, y)
 
-def find_best_route(start_location, remaining_locations, df_distances, model, max_depth=5):
+
+# Função para visualizar a última árvore
+def visualize_last_tree(rf, X):
+    plt.figure(figsize=(20, 10))
+    plot_tree(rf.estimators_[-1], feature_names=X.columns, filled=True, rounded=True, fontsize=10)
+    plt.title('Última Árvore Gerada')
+    plt.show()
+
+# Visualizar a última árvore da Random Forest
+visualize_last_tree(rf, X)
+
+
+def find_best_route(start_location, remaining_locations, df_distances, model, max_depth=7):
     """
     Encontra a melhor rota usando busca em profundidade limitada e um modelo de regressão.
 
@@ -158,7 +171,7 @@ if user_locations:
     start_location = user_locations[0]
     remaining_locations = user_locations[1:]
     
-    best_route, best_distance = find_best_route(start_location, remaining_locations, df_distances, rf, max_depth=4)
+    best_route, best_distance = find_best_route(start_location, remaining_locations, df_distances, rf, max_depth=7)
     print(f"Melhor rota: {best_route}")
     print(f"Distância prevista para a melhor rota: {best_distance:.2f}")
 
